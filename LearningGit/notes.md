@@ -1,0 +1,1 @@
+Version Control System are of two types : centralized and distributed
