@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manipulation || Class - 4</title>
+  </head>
+  <body>
+    <input type="text" name="" id="firstNum" placeholder="First Number" /><br />
+    <input
+      type="text"
+      name=""
+      id="secondNum"
+      placeholder="Second Number"
+    /><br />
+    <button onclick="populateDiv()">Calculate Sum</button>
+    <!--
+        Changing the element on website once the website is loaded
+    -->
+    <div id="finalSum"></div>
+  </body>
+  <script>
+    function populateDiv() {
+      const a = document.getElementById("firstNum").value;
+      const b = document.getElementById("secondNum").value;
+      const element = document.getElementById("finalSum");
+      element.innerHTML = parseInt(a) + parseInt(b);
+    }
+  </script>
+</html>
