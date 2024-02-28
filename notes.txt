@@ -1,0 +1,4 @@
+Single page application - dynamically changing the page not not re-fetching something from the backend
+client side bundle - The big bundle that you get on the client that includes all your js code.
+client side routing - the code that you write as a application developer to make sure that if the user is on the messages page , show them the messages , if they are on the landing page show them that .
+
