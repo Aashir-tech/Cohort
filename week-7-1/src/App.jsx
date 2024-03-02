@@ -1,46 +1,73 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { CountContext } from "./Context"
+import { useRecoilState, useRecoilValue , RecoilRoot, useSetRecoilState } from "recoil"
+import { countAtom, evenSelector } from "./store/atoms/count"
 
 //wrap anyone that wants to use the teleported value inside a provider
 function App() {
-    const [count,setCount] = useState(0)
 
     return <div>
-        <CountContext.Provider value={count}>
-             <Count setCount={setCount}/>
-        </CountContext.Provider>
+        <RecoilRoot>
+             <Count/>
+        </RecoilRoot>
     </div>
 }
 
-function Count({setCount}) {
+function Count() {
+    console.log("re-render")
+    // const value = useRecoilValue(countAtom)
     return <div>
         <CountRenderer />
-        <Buttons setCount={setCount}/>
+        <Buttons />
+        
     </div>
 }
 
 function CountRenderer() {
-    const count = useContext(CountContext)
+    const count = useRecoilValue(countAtom);
     return <div>
         {count}
+        <EvenRenderer />
     </div>
 }
 
-function Buttons({setCount}) {
-    const count = useContext(CountContext)
+function EvenRenderer() {
+    const isEven = useRecoilValue(evenSelector);
+
+    return <div>
+        {isEven ? "It is Even" : null}
+    </div>
+}
+
+function Buttons() {
+    // const [count , setCount] = useRecoilState(countAtom);
+
+    const setCount = useSetRecoilState(countAtom);
+    console.log("buttons re-rendered")
     return <div>
         <button onClick={() => {
-            setCount(count + 1)
+            setCount(count => count + 1)
         }}>Increase</button>
 
         <button onClick={() => {
-            setCount(count - 1)
+            setCount(count => count - 1)
         }}>Decrease</button>
     </div>
 }
 
 export default App
 
+//Interview Question : 
+
+/*
+why do you use context API ?
+
+-> To make rendering more performant - NO
+-> To make syntax charm / get rid of prop drilling - YES 
+
+State Management Libraries helps you maintain those 
+
+*/
 
 
 
