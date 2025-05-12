@@ -1,0 +1,23 @@
+-- CreateTable
+CREATE TABLE "User" (
+    "id" SERIAL NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT,
+    "passwor" TEXT NOT NULL,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Todo" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "done" BOOLEAN NOT NULL DEFAULT false,
+    "description" TEXT,
+    "userId" INTEGER NOT NULL,
+
+    CONSTRAINT "Todo_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_firstName_key" ON "User"("firstName");

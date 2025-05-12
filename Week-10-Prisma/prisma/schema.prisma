@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://neondb_owner:npg_wg0nthGA3loM@ep-sparkling-field-a8z1skcc-pooler.eastus2.azure.neon.tech/neondb?sslmode=require"
+}
+
+//npx prisma migrate dev --name UserAndTodoAdded
+// It migrates my database (Changes database) and create my migration file locally
+
+model User {
+  id   Int @id  @default(autoincrement())
+  firstName String @unique
+  lastName String?
+  passwor String
+}
+
+model Todo  {
+  id Int @id @default(autoincrement())
+  title String
+  done Boolean @default(false)
+  description String?
+  userId Int
+}
